@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.dongnao.douyin.R;
 import com.dongnao.douyin.camera.record.MediaRecorder;
@@ -31,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestPermision();
+
+    }
+
+    private void setContentView() {
         setContentView(R.layout.activity_main);
         douyinView = findViewById(R.id.douyinView);
         RecordButton recordButton = findViewById(R.id.btn_record);
@@ -98,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 douyinView.enableStick(isChecked);
             }
         });
-
         /**
          * 录制完成
          */
@@ -115,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-        requestPermision();
     }
+
     public void requestPermision() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -128,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
+        setContentView();
     }
     volatile boolean granted=false;
     @Override
@@ -144,7 +150,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             if(granted){
-                //todo
+                setContentView();
+            }else{
+                Toast.makeText(this,"不给权限无法使用哦！",Toast.LENGTH_SHORT).show();
             }
         }
     }
