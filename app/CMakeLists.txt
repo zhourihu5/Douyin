@@ -18,6 +18,6 @@ include_directories(src/main/cpp/FaceAlignment/include)
 
 target_link_libraries(
                        native-lib
-                       opencv_java3
+                       opencv_java4
                        seeta_fa_lib
                       log  )

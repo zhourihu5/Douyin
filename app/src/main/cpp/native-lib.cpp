@@ -56,7 +56,8 @@ Java_com_dongnao_douyin_camera_face_FaceTrack_native_1detector(JNIEnv *env, jobj
     FaceTrack *me = (FaceTrack *) self;
     Mat src(height + height / 2, width, CV_8UC1, data);
     //opencv
-    cvtColor(src, src, CV_YUV2RGBA_NV21);
+//    cvtColor(src, src, CV_YUV2RGBA_NV21);
+    cvtColor(src, src, COLOR_YUV2RGBA_NV21);
     if (cameraId == 1) {
         //前置
         //逆时针90度
