@@ -25,6 +25,8 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 public class DouyinRenderer implements GLSurfaceView.Renderer, SurfaceTexture.OnFrameAvailableListener, Camera.PreviewCallback {
+    public static final String MODEL_PATH = "/sdcard/lbpcascade_frontalface.xml";
+    public static final String SEATA_PATH = "/sdcard/seeta_fa_v1.1.bin";
     private ScreenFilter mScreenFilter;
     private DouyinView mView;
     private CameraHelper mCameraHelper;
@@ -46,9 +48,9 @@ public class DouyinRenderer implements GLSurfaceView.Renderer, SurfaceTexture.On
         Context context = mView.getContext();
         //拷贝 模型
         OpenGLUtils.copyAssets2SdCard(context, "lbpcascade_frontalface.xml",
-                "/sdcard/lbpcascade_frontalface.xml");
+                MODEL_PATH);
         OpenGLUtils.copyAssets2SdCard(context, "seeta_fa_v1.1.bin",
-                "/sdcard/seeta_fa_v1.1.bin");
+                SEATA_PATH);
     }
 
     /**
@@ -94,8 +96,8 @@ public class DouyinRenderer implements GLSurfaceView.Renderer, SurfaceTexture.On
         mWidth = width;
         mHeigh = height;
         // 创建跟踪器
-        mFaceTrack = new FaceTrack("/sdcard/lbpcascade_frontalface.xml",
-                "/sdcard/seeta_fa_v1.1.bin", mCameraHelper);
+        mFaceTrack = new FaceTrack(MODEL_PATH,
+                SEATA_PATH, mCameraHelper);
         //启动跟踪器
         mFaceTrack.startTrack();
         //开启预览

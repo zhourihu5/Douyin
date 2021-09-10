@@ -31,7 +31,7 @@ public class MediaRecorder {
     private MediaMuxer mMediaMuxer;
     private Handler mHandler;
     private EGLBase mEglBase;
-    private boolean isStart;
+    private volatile boolean isStart;
     private int index;
     private float mSpeed;
     private long lastTimsUs;

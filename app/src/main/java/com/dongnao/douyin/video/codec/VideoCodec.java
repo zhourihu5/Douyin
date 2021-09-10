@@ -22,7 +22,7 @@ public class VideoCodec {
     private int mHeight;
     private int mFps;
     private MediaCodec mMediaCodec;
-    private boolean isCodeing;
+    private volatile boolean isCodeing;
     private byte[] outData;
     private CodecTask mCodecTask;
 
